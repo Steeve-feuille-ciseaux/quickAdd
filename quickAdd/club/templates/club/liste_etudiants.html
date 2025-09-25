@@ -65,7 +65,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Liste des étudiants inscrits</h1>
+        <h1>Club informatique</h1>
         <button onclick="window.print()" style="margin-bottom: 20px; padding: 8px 16px; font-size: 1rem; cursor: pointer;">
         Imprimer la liste
         </button>
@@ -103,7 +103,6 @@
                     <tr>
                         <th>Prénom</th>
                         <th>Nom</th>
-                        <th>Niveau</th>
                         <th>Classe</th>
                         {# <th>Club</th> #} <!-- Club commenté -->
                         <th>Thème</th>
@@ -114,8 +113,7 @@
                         <tr>
                             <td>{{ etudiant.prenom }}</td>
                             <td>{{ etudiant.nom }}</td>
-                            <td>{{ etudiant.niveau }}</td>
-                            <td>{{ etudiant.classe }}</td>
+                            <td>{{ etudiant.niveau }} {{ etudiant.classe|upper }}</td>
                             {# <td>{{ etudiant.get_club_display }}</td> #} <!-- Club commenté -->
                             <td>{{ etudiant.get_theme_display }}</td>
                         </tr>
