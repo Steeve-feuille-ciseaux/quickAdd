@@ -1,0 +1,4 @@
+v0.00.0 = create project
+
+** comande récurrente **
+python manage.py runserver
