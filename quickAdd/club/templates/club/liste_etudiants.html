@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <title>Liste des étudiants inscrits</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 12px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 600px;
+            box-sizing: border-box;
+            padding: 30px 40px;
+            text-align: center;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 auto;
+            max-width: 100%;
+        }
+        li {
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            font-size: 1.1rem;
+            text-align: left;
+        }
+        li:last-child {
+            border-bottom: none;
+        }
+        li:nth-child(odd) {
+            background-color: #f5f8fa;
+        }
+        a {
+            display: inline-block;
+            margin-top: 30px;
+            color: #2980b9;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Liste des étudiants inscrits</h1>
+        <ul>
+            {% for etudiant in etudiants %}
+                <li>
+                    {{ etudiant.prenom }} {{ etudiant.nom }} — Niveau {{ etudiant.niveau }} — Classe {{ etudiant.classe }} — Club : {{ etudiant.get_club_display }} — Thème : {{ etudiant.get_theme_display }}
+                </li>
+            {% empty %}
+                <li>Aucun étudiant inscrit.</li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'ajouter_etudiant' %}">Ajouter un étudiant</a>
+    </div>
+</body>
+</html>
