@@ -35,7 +35,7 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 0 auto;
+            margin: 20px auto;
             font-size: 1rem;
             text-align: left;
         }
@@ -68,11 +68,33 @@
         <h1>Liste des étudiants inscrits</h1>
 
         {% if etudiants %}
+            <!-- Tableau résumé -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Total inscrits</th>
+                        {% for niveau, count in inscrits_par_niveau.items %}
+                            <th>{{ niveau }}ième</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ total_inscrits }}</td>
+                        {% for niveau, count in inscrits_par_niveau.items %}
+                            <td>{{ count }}</td>
+                        {% endfor %}
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Tableau détails étudiants -->
             <table>
                 <thead>
                     <tr>
                         <th>Prénom</th>
                         <th>Nom</th>
+                        <th>Niveau</th>
                         <th>Classe</th>
                         {# <th>Club</th> #} <!-- Club commenté -->
                         <th>Thème</th>
@@ -83,7 +105,8 @@
                         <tr>
                             <td>{{ etudiant.prenom }}</td>
                             <td>{{ etudiant.nom }}</td>
-                            <td>{{ etudiant.niveau }} {{ etudiant.classe }}</td>
+                            <td>{{ etudiant.niveau }}</td>
+                            <td>{{ etudiant.classe }}</td>
                             {# <td>{{ etudiant.get_club_display }}</td> #} <!-- Club commenté -->
                             <td>{{ etudiant.get_theme_display }}</td>
                         </tr>
