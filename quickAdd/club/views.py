@@ -5,6 +5,9 @@ from collections import Counter
 from django.http import HttpResponse
 from docx import Document
 from io import BytesIO
+from docx.shared import Pt, Inches
+from docx.oxml.ns import qn
+from docx.oxml import OxmlElement
 
 def ajouter_etudiant(request):
     if request.method == 'POST':
@@ -58,22 +61,36 @@ def export_word(request):
 
     document.add_paragraph()  # saut de ligne
 
-    # Tableau détails
-    table = document.add_table(rows=1, cols=5)
+    # Tableau détails avec colonnes : Prénom, Nom, Niveau+Classe, Thème
+    table = document.add_table(rows=1, cols=4)
+    table.style = 'Table Grid'  # style simple avec bordures
+
     hdr_cells = table.rows[0].cells
     hdr_cells[0].text = 'Prénom'
     hdr_cells[1].text = 'Nom'
-    hdr_cells[2].text = 'Niveau'
-    hdr_cells[3].text = 'Classe'
-    hdr_cells[4].text = 'Thème'
+    hdr_cells[2].text = 'Niveau & Classe'
+    hdr_cells[3].text = 'Thème'
+
+    # Définir largeurs de colonnes (optionnel, pour mieux répartir l’espace)
+    widths = [Inches(1.2), Inches(1.5), Inches(1.8), Inches(3.0)]
+    for row in table.rows:
+        for idx, width in enumerate(widths):
+            row.cells[idx].width = width
 
     for etudiant in etudiants:
         row_cells = table.add_row().cells
         row_cells[0].text = etudiant.prenom
         row_cells[1].text = etudiant.nom
-        row_cells[2].text = str(etudiant.niveau)
-        row_cells[3].text = etudiant.classe
-        row_cells[4].text = etudiant.get_theme_display()
+        # Niveau + Classe en majuscule comme demandé
+        row_cells[2].text = f"{etudiant.niveau} {etudiant.classe.upper()}"
+        row_cells[3].text = etudiant.get_theme_display()
+
+    # (Optionnel) ajuster la taille de la police pour que ce soit plus lisible
+    for row in table.rows:
+        for cell in row.cells:
+            for paragraph in cell.paragraphs:
+                for run in paragraph.runs:
+                    run.font.size = Pt(12)
 
     # Préparer le document à retourner en téléchargement
     f = BytesIO()
@@ -86,4 +103,3 @@ def export_word(request):
     )
     response['Content-Disposition'] = 'attachment; filename=liste_etudiants.docx'
     return response
-
