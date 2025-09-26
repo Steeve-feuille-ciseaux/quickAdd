@@ -24,7 +24,7 @@
             border-radius: 8px;
             box-shadow: 0 0 12px rgba(0,0,0,0.1);
             width: 100%;
-            max-width: 420px;
+            max-width: 500px;
             box-sizing: border-box;
             text-align: center;
         }
@@ -54,6 +54,14 @@
             border-color: #2980b9;
             outline: none;
         }
+        .flex-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .flex-row > div {
+            flex: 1;
+        }
         button {
             margin-top: 25px;
             background-color: #2980b9;
@@ -79,6 +87,10 @@
         a:hover {
             text-decoration: underline;
         }
+
+        select#id_niveau, select#id_classe {
+            width: 60px;
+        }
     </style>
 </head>
 <body>
@@ -86,7 +98,31 @@
         <h1>Ajouter un étudiant</h1>
         <form method="post">
             {% csrf_token %}
-            {{ form.as_p }}
+
+            <label for="{{ form.nom.id_for_label }}">Nom</label>
+            {{ form.nom }}
+
+            <label for="{{ form.prenom.id_for_label }}">Prénom</label>
+            {{ form.prenom }}
+
+            <!-- Ligne niveau + classe -->
+            <div class="d-flex justify-content-center align-items-center gap-2 mt-3">
+                <div>
+                    <label for="{{ form.niveau.id_for_label }}" class="form-label">Niveau</label>
+                    {{ form.niveau }}
+                </div>
+                <div>
+                    <label for="{{ form.classe.id_for_label }}" class="form-label">Classe</label>
+                    {{ form.classe }}
+                </div>
+            </div>
+
+            <label for="{{ form.club.id_for_label }}">Club</label>
+            {{ form.club }}
+
+            <label for="{{ form.theme.id_for_label }}">Thème</label>
+            {{ form.theme }}
+
             <button type="submit">Enregistrer</button>
         </form>
         <a href="{% url 'liste_etudiants' %}">Voir la liste des inscrits</a>
