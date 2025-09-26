@@ -41,4 +41,4 @@ class Etudiant(models.Model):
     theme = models.CharField(max_length=10, choices=THEME_CHOICES)
 
     def __str__(self):
-        return f"{self.prenom} {self.nom} - {self.niveau} - {self.classe} - {self.club}"
+        return f"{self.nom} {self.prenom} {self.niveau}{self.classe} - {self.club}"

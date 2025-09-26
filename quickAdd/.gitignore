@@ -1,0 +1,4 @@
+db.sqlite3
+quickAdd/__pycache__
+club/__pycache__
+club/migrations/__pycache__
