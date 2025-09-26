@@ -22,12 +22,13 @@ def ajouter_etudiant(request):
 
 def liste_etudiants(request):
     etudiants = Etudiant.objects.all()
-
     total_inscrits = etudiants.count()
-
-    # Compter le nombre d'étudiants par niveau
     niveaux = etudiants.values_list('niveau', flat=True)
-    inscrits_par_niveau = dict(Counter(niveaux))
+    compteur = Counter(niveaux)
+
+    # Créer un dictionnaire avec toutes les clés 6,5,4,3 garanties, valeur 0 par défaut
+    niveaux_fixes = ['6', '5', '4', '3']
+    inscrits_par_niveau = {niveau: compteur.get(niveau, 0) for niveau in niveaux_fixes}
 
     context = {
         'etudiants': etudiants,

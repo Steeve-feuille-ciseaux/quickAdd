@@ -5,5 +5,7 @@ v0.03.0 = Clean __pycache__ + ajoute gestion des données dans Django Admin
 v0.03.0.1 = MAJ Patch Note
 v0.04.0 = Polish formulaireNote
 v0.05.0 = Polish Export Word
+v0.06.0 = Affichage 0 élève par classe en défaut value
+
 ** comande récurrente **
 python manage.py runserver
