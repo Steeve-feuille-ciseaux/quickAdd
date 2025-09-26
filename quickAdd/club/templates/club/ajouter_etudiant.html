@@ -25,6 +25,7 @@
             box-shadow: 0 0 12px rgba(0,0,0,0.1);
             width: 100%;
             max-width: 500px;
+            max-width: 500px;
             box-sizing: border-box;
             text-align: center;
         }
@@ -53,6 +54,14 @@
         input[type="text"]:focus, select:focus {
             border-color: #2980b9;
             outline: none;
+        }
+        .flex-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .flex-row > div {
+            flex: 1;
         }
         .flex-row {
             display: flex;
