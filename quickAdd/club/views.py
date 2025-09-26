@@ -8,6 +8,7 @@ from io import BytesIO
 from docx.shared import Pt, Inches
 from docx.oxml.ns import qn
 from docx.oxml import OxmlElement
+from docx.enum.text import WD_PARAGRAPH_ALIGNMENT
 
 def ajouter_etudiant(request):
     if request.method == 'POST':
@@ -39,7 +40,8 @@ def export_word(request):
     etudiants = Etudiant.objects.all()
 
     document = Document()
-    document.add_heading('Liste des étudiants inscrits', 0)
+    heading = document.add_heading('Club informatique', level=0)
+    heading.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
 
     # Ajouter tableau résumé
     total_inscrits = etudiants.count()
@@ -48,15 +50,22 @@ def export_word(request):
     inscrits_par_niveau = dict(Counter(niveaux))
 
     # Résumé
-    table_resume = document.add_table(rows=2, cols=1 + len(inscrits_par_niveau))
+    # Supposons que tu as tous les niveaux dans une liste (ordre voulu)
+    niveaux_possibles = ['6', '5', '4', '3']
+
+    # Création de la table résumé avec tous les niveaux
+    table_resume = document.add_table(rows=2, cols=1 + len(niveaux_possibles))
     hdr_cells = table_resume.rows[0].cells
-    hdr_cells[0].text = 'Total inscrits'
-    for i, niveau in enumerate(inscrits_par_niveau.keys(), start=1):
-        hdr_cells[i].text = f'Niveau {niveau}'
+    hdr_cells[0].text = 'Total '
+
+    for i, niveau in enumerate(niveaux_possibles, start=1):
+        hdr_cells[i].text = f'{niveau}ième'
 
     row_cells = table_resume.rows[1].cells
     row_cells[0].text = str(total_inscrits)
-    for i, count in enumerate(inscrits_par_niveau.values(), start=1):
+
+    for i, niveau in enumerate(niveaux_possibles, start=1):
+        count = inscrits_par_niveau.get(niveau, 0)
         row_cells[i].text = str(count)
 
     document.add_paragraph()  # saut de ligne
@@ -68,7 +77,7 @@ def export_word(request):
     hdr_cells = table.rows[0].cells
     hdr_cells[0].text = 'Prénom'
     hdr_cells[1].text = 'Nom'
-    hdr_cells[2].text = 'Niveau & Classe'
+    hdr_cells[2].text = 'Classe'
     hdr_cells[3].text = 'Thème'
 
     # Définir largeurs de colonnes (optionnel, pour mieux répartir l’espace)
