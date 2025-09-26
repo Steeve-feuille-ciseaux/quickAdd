@@ -2,6 +2,7 @@ v0.00.0 = create project
 v0.01.0 = Tableau + export word
 v0.02.0 = Polish export word
 v0.03.0 = Clean __pycache__ + ajoute gestion des données dans Django Admin
+v0.03.0.1 = MAJ Patch Note
 
 ** comande récurrente **
 python manage.py runserver
