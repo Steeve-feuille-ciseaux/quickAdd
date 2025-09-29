@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import EtudiantForm
 from .models import Etudiant
+from datetime import date
 from collections import Counter
 from django.http import HttpResponse
 from docx import Document
@@ -21,14 +22,27 @@ def ajouter_etudiant(request):
     return render(request, 'club/ajouter_etudiant.html', {'form': form})
 
 def liste_etudiants(request):
-    etudiants = Etudiant.objects.all()
-    total_inscrits = etudiants.count()
-    niveaux = etudiants.values_list('niveau', flat=True)
+    etudiants_qs = Etudiant.objects.all()
+    total_inscrits = etudiants_qs.count()
+    niveaux = etudiants_qs.values_list('niveau', flat=True)
     compteur = Counter(niveaux)
 
-    # Créer un dictionnaire avec toutes les clés 6,5,4,3 garanties, valeur 0 par défaut
+    # Garantir toutes les clés 6,5,4,3
     niveaux_fixes = ['6', '5', '4', '3']
     inscrits_par_niveau = {niveau: compteur.get(niveau, 0) for niveau in niveaux_fixes}
+
+    # ✅ Date d’ouverture des inscriptions
+    date_ouverture = date(2025, 9, 25)
+
+    # ✅ Préparer liste enrichie avec délai
+    etudiants = []
+    for etudiant in etudiants_qs:
+        # Calcul du délai
+        delta = (etudiant.date_inscription - date_ouverture).days
+        etudiants.append({
+            'instance': etudiant,
+            'delai': f"(J+{delta})" if delta >= 0 else f"(J-{abs(delta)})",  # Si inscrit avant ouverture
+        })
 
     context = {
         'etudiants': etudiants,

@@ -9,7 +9,8 @@ v0.06.0 = Affichage 0 élève par classe en défaut value
 v0.06.1 = Correction texte
 v0.07.0 = Séparer le css du html
 v0.07.1 = Changement d'url pour la liste et ajout d'élève 
-v0.08.0 = ajout date d'inscription
+v0.08.0 = ajout date d'inscription 
+v0.09.0 = Afficher si l'élève s'est inscrit le jour d'ouverture
 
 ** comande récurrente **
 python manage.py runserver

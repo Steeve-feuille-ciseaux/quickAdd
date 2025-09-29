@@ -50,17 +50,22 @@
                         <th>Date d'inscription</th>  <!-- ✅ Nouvelle colonne -->
                     </tr>
                 </thead>
-                <tbody>
-                    {% for etudiant in etudiants %}
-                        <tr>
-                            <td>{{ etudiant.prenom }}</td>
-                            <td>{{ etudiant.nom }}</td>
-                            <td>{{ etudiant.niveau }} {{ etudiant.classe|upper }}</td>
-                            <td>{{ etudiant.get_theme_display }}</td>
-                            <td>{{ etudiant.date_inscription|date:"d/m/Y" }}</td>  <!-- ✅ Date formatée -->
-                        </tr>
-                    {% endfor %}
-                </tbody>
+                    <tbody>
+                        {% for item in etudiants %}
+                            {% with etudiant=item.instance %}
+                            <tr>
+                                <td>{{ etudiant.prenom }}</td>
+                                <td>{{ etudiant.nom }}</td>
+                                <td>{{ etudiant.niveau }} {{ etudiant.classe|upper }}</td>
+                                <td>{{ etudiant.get_theme_display }}</td>
+                                <td>
+                                    {{ etudiant.date_inscription|date:"d/m/Y" }}
+                                    {{ item.delai }}
+                                </td>
+                            </tr>
+                            {% endwith %}
+                        {% endfor %}
+                    </tbody>
             </table>
         {% else %}
             <p>Aucun étudiant inscrit.</p>
