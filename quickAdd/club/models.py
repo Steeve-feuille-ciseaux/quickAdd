@@ -1,10 +1,10 @@
 from django.db import models
+from django.utils import timezone
 
 class Etudiant(models.Model):
     nom = models.CharField(max_length=100)
     prenom = models.CharField(max_length=100)
 
-    # Nouveau champ niveau avec choix
     NIVEAU_CHOICES = [
         ('6', '6'),
         ('5', '5'),
@@ -13,7 +13,6 @@ class Etudiant(models.Model):
     ]
     niveau = models.CharField(max_length=1, choices=NIVEAU_CHOICES, null=True, blank=True)
 
-    # Champ classe modifié en choix
     CLASSE_CHOICES = [
         ('a', 'A'),
         ('b', 'B'),
@@ -35,10 +34,9 @@ class Etudiant(models.Model):
         ('theme2', 'Coder des jeux'),
         ('theme3', 'Utiliser GPT'),
     ]
-    theme = models.CharField(max_length=20, choices=THEME_CHOICES)
-
-    club = models.CharField(max_length=10, choices=CLUB_CHOICES)
     theme = models.CharField(max_length=10, choices=THEME_CHOICES)
+    club = models.CharField(max_length=10, choices=CLUB_CHOICES)
+    date_inscription = models.DateField(default=timezone.now)
 
     def __str__(self):
         return f"{self.nom} {self.prenom} {self.niveau}{self.classe} - {self.club}"

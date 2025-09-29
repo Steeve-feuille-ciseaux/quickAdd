@@ -94,6 +94,7 @@ def export_word(request):
         # Niveau + Classe en majuscule comme demandé
         row_cells[2].text = f"{etudiant.niveau} {etudiant.classe.upper()}"
         row_cells[3].text = etudiant.get_theme_display()
+        # row_cells[4].text = etudiant.date_inscription.strftime('%d/%m/%Y')
 
     # (Optionnel) ajuster la taille de la police pour que ce soit plus lisible
     for row in table.rows:
