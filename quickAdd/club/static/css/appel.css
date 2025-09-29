@@ -1,0 +1,21 @@
+.btn-confirm {
+    background: white;
+    color: gray;
+    border: 2px solid gray; /* bordure grise par défaut */
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    user-select: none;
+    transition: background-color 0.3s, color 0.3s;
+    margin-top: 0;
+}
+.btn-confirm.confirmed {
+    background: #27ae60;
+    color: white;
+    border-color: #27ae60;
+    pointer-events: none; /* Désactive le clic après confirmation */            
+    margin-top: 0;
+}

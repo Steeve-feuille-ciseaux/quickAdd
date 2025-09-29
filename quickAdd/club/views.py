@@ -11,6 +11,8 @@ from docx.shared import Pt, Inches
 from docx.oxml.ns import qn
 from docx.oxml import OxmlElement
 from docx.enum.text import WD_PARAGRAPH_ALIGNMENT
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 def ajouter_etudiant(request):
     if request.method == 'POST':
@@ -54,14 +56,18 @@ def liste_etudiants(request):
 
 def appel(request):
     etudiants = Etudiant.objects.all().order_by('nom')
-    return render(request, 'club/appel.html', {'etudiants': etudiants})
-
+    today = timezone.now().date()
+    return render(request, 'club/appel.html', {'etudiants': etudiants, 'today': today})
+    
+@csrf_exempt
 def valider_presence(request, etudiant_id):
-    etudiant = get_object_or_404(Etudiant, id=etudiant_id)
-    etudiant.date_presence = timezone.now().date()
-    etudiant.cours_suivi += 1
-    etudiant.save()
-    return redirect('appel')
+    if request.method == 'POST':
+        etudiant = get_object_or_404(Etudiant, id=etudiant_id)
+        etudiant.date_presence = timezone.now().date()
+        etudiant.cours_suivi += 1
+        etudiant.save()
+        return JsonResponse({'success': True})
+    return JsonResponse({'error': 'Invalid method'}, status=400)
 
 def export_word(request):
     etudiants = Etudiant.objects.all()

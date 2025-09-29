@@ -2,9 +2,10 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Faire l'appel</title>
     <link rel="stylesheet" href="{% static 'css/liste.css' %}">
+    <link rel="stylesheet" href="{% static 'css/appel.css' %}">
 </head>
 <body>
     <div class="container">
@@ -23,9 +24,14 @@
                     <td>{{ etudiant.prenom }}</td>
                     <td>{{ etudiant.nom }}</td>
                     <td>
-                        <a href="{% url 'valider_presence' etudiant.id %}" 
-                           style="background: #27ae60; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">
-                            ✅ Confirmer
+                        <a href="#" 
+                           class="btn-confirm {% if etudiant.date_presence == today %}confirmed{% endif %}"
+                           data-id="{{ etudiant.id }}">
+                            {% if etudiant.date_presence == today %}
+                                ✅ Confirmé
+                            {% else %}
+                                En attente
+                            {% endif %}
                         </a>
                     </td>
                 </tr>

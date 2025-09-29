@@ -13,6 +13,7 @@ v0.08.0 = ajout date d'inscription
 v0.09.0 = Afficher si l'élève s'est inscrit le jour d'ouverture
 v0.09.1 = Bouton ajouter un élève mis en évidence 
 v0.10.0 = Feature appel commencé
+v0.10.1 = css et js séparé
 
 ** comande récurrente **
 python manage.py runserver
