@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Faire l'appel</title>
+    <link rel="stylesheet" href="{% static 'css/liste.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Faire l'appel</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Prénom</th>
+                    <th>Nom</th>
+                    <th>Présence</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for etudiant in etudiants %}
+                <tr>
+                    <td>{{ etudiant.prenom }}</td>
+                    <td>{{ etudiant.nom }}</td>
+                    <td>
+                        <a href="{% url 'valider_presence' etudiant.id %}" 
+                           style="background: #27ae60; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">
+                            ✅ Confirmer
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'liste_etudiants' %}" style="margin-top: 20px; display: inline-block;">⬅ Retour à la liste</a>
+    </div>
+</body>
+</html>

@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.utils import timezone
 from .forms import EtudiantForm
 from .models import Etudiant
 from datetime import date
@@ -50,6 +51,17 @@ def liste_etudiants(request):
         'inscrits_par_niveau': inscrits_par_niveau,
     }
     return render(request, 'club/liste_etudiants.html', context)
+
+def appel(request):
+    etudiants = Etudiant.objects.all().order_by('nom')
+    return render(request, 'club/appel.html', {'etudiants': etudiants})
+
+def valider_presence(request, etudiant_id):
+    etudiant = get_object_or_404(Etudiant, id=etudiant_id)
+    etudiant.date_presence = timezone.now().date()
+    etudiant.cours_suivi += 1
+    etudiant.save()
+    return redirect('appel')
 
 def export_word(request):
     etudiants = Etudiant.objects.all()
