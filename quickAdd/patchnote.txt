@@ -8,6 +8,7 @@ v0.05.0 = Polish Export Word
 v0.06.0 = Affichage 0 élève par classe en défaut value
 v0.06.1 = Correction texte
 v0.07.0 = Séparer le css du html
+v0.07.1 = Changement d'url pour la liste et ajout d'élève 
 
 ** comande récurrente **
 python manage.py runserver
