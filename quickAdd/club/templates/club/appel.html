@@ -6,6 +6,7 @@
     <title>Faire l'appel</title>
     <link rel="stylesheet" href="{% static 'css/liste.css' %}">
     <link rel="stylesheet" href="{% static 'css/appel.css' %}">
+    <script src="{% static 'js/appel.js' %}" defer></script>
 </head>
 <body>
     <div class="container">
@@ -24,15 +25,22 @@
                     <td>{{ etudiant.prenom }}</td>
                     <td>{{ etudiant.nom }}</td>
                     <td>
-                        <a href="#" 
-                           class="btn-confirm {% if etudiant.date_presence == today %}confirmed{% endif %}"
-                           data-id="{{ etudiant.id }}">
+                        <div class="btn-group">
+                            <a href="#" 
+                               class="btn-confirm {% if etudiant.date_presence == today %}confirmed{% endif %}"
+                               data-id="{{ etudiant.id }}">
+                                {% if etudiant.date_presence == today %}
+                                    ✅ Confirmé
+                                {% else %}
+                                    En attente
+                                {% endif %}
+                            </a>
                             {% if etudiant.date_presence == today %}
-                                ✅ Confirmé
-                            {% else %}
-                                En attente
+                            <a href="#" class="btn-annuler" data-id="{{ etudiant.id }}">
+                                Annuler
+                            </a>
                             {% endif %}
-                        </a>
+                        </div>
                     </td>
                 </tr>
                 {% endfor %}

@@ -69,6 +69,23 @@ def valider_presence(request, etudiant_id):
         return JsonResponse({'success': True})
     return JsonResponse({'error': 'Invalid method'}, status=400)
 
+@csrf_exempt
+def annuler_presence(request, etudiant_id):
+    if request.method == 'POST':
+        etudiant = get_object_or_404(Etudiant, id=etudiant_id)
+        today = timezone.now().date()
+
+        if etudiant.date_presence == today:
+            etudiant.date_presence = None
+            if etudiant.cours_suivi > 0:
+                etudiant.cours_suivi -= 1
+            etudiant.save()
+            return JsonResponse({'success': True})
+        else:
+            return JsonResponse({'error': 'La date de présence ne correspond pas à aujourd\'hui.'}, status=400)
+    
+    return JsonResponse({'error': 'Méthode non autorisée'}, status=405)
+
 def export_word(request):
     etudiants = Etudiant.objects.all()
 

@@ -1,8 +1,7 @@
-/* Bouton de confirmation de présence */
 .btn-confirm {
     background: white;
     color: gray;
-    border: 2px solid gray; /* bordure grise par défaut */
+    border: 2px solid gray;
     padding: 6px 12px;
     border-radius: 4px;
     cursor: pointer;
@@ -14,25 +13,35 @@
     margin-top: 0;
 }
 
-/* Bouton confirmé */
 .btn-confirm.confirmed {
     background: #27ae60;
     color: white;
     border-color: #27ae60;
-    pointer-events: none; /* Désactive le clic après confirmation */
-    margin-top: 0;
+    pointer-events: none;
 }
 
-/* Lien retour */
+.btn-annuler {
+    background: white;
+    color: #c0392b;
+    border: 2px solid #c0392b;
+    padding: 6px 12px;
+    margin-left: 10px;
+    margin-top: 0;
+    border-radius: 4px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-group {
+    display: flex;
+    align-items: center;
+}
+
 .back-link {
     margin-top: 20px;
     display: inline-block;
-    color: #2980b9;
     text-decoration: none;
-    font-weight: 600;
-    font-size: 1rem;
-}
-
-.back-link:hover {
-    text-decoration: underline;
+    color: #2980b9;
+    font-weight: bold;
 }
