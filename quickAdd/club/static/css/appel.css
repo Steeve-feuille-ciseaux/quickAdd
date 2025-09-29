@@ -1,3 +1,4 @@
+/* Bouton de confirmation de présence */
 .btn-confirm {
     background: white;
     color: gray;
@@ -12,10 +13,26 @@
     transition: background-color 0.3s, color 0.3s;
     margin-top: 0;
 }
+
+/* Bouton confirmé */
 .btn-confirm.confirmed {
     background: #27ae60;
     color: white;
     border-color: #27ae60;
-    pointer-events: none; /* Désactive le clic après confirmation */            
+    pointer-events: none; /* Désactive le clic après confirmation */
     margin-top: 0;
+}
+
+/* Lien retour */
+.back-link {
+    margin-top: 20px;
+    display: inline-block;
+    color: #2980b9;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.back-link:hover {
+    text-decoration: underline;
 }
