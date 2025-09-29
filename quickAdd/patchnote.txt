@@ -17,6 +17,7 @@ v0.10.1 = css et js séparé
 v0.10.1+ = css et js séparé 
 v0.10.2 = Appel du "date dynamique"
 v0.11.0 = Annulé une confirmation de présence lors de l'appel
+v0.11.1 = Polish accueil / liste des élèves
 
 ** comande récurrente **
 python manage.py runserver
