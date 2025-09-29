@@ -19,6 +19,11 @@ v0.10.2 = Appel du "date dynamique"
 v0.11.0 = Annulé une confirmation de présence lors de l'appel
 v0.11.1 = Polish accueil / liste des élèves
 v0.12.0 = tri de la liste
+v0.13.0 = pré-requis + readme
 
 ** comande récurrente **
+python -m venv env
+source env/bin/activate  # Sur Windows : env\Scripts\activate
+python manage.py migrate
+python manage.py makemigrations
 python manage.py runserver
