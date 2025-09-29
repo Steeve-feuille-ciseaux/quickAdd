@@ -21,4 +21,6 @@ v0.11.1 = Polish accueil / liste des élèves
 v0.12.0 = tri de la liste
 
 ** comande récurrente **
+source env/bin/activate
 python manage.py runserver
+deactivate
