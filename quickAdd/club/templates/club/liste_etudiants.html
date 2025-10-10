@@ -56,14 +56,12 @@
                     {% for item in etudiants %}
                         {% with etudiant=item.instance %}
                         <tr class="clickable-row"
-                            style="cursor:pointer;"
-                            data-id="{{ etudiant.id }}"
-                            data-prenom="{{ etudiant.prenom }}"
-                            data-nom="{{ etudiant.nom }}"
-                            data-classe="{{ etudiant.niveau }} {{ etudiant.classe|upper }}"
+                            data-info="{{ etudiant.prenom }} {{ etudiant.nom }} - Classe {{ etudiant.niveau }}{{ etudiant.classe|upper }}"
                             data-theme="{{ etudiant.get_theme_display }}"
                             data-skill="{{ etudiant.get_skill_display }}"
-                            data-objectif="{{ etudiant.objectif|default:'Non précisé' }}">
+                            data-objectif="{{ etudiant.objectif }}"
+                            data-id="{{ etudiant.id }}"
+                            style="cursor:pointer;">
                             <td>{{ etudiant.prenom }}</td>
                             <td>{{ etudiant.nom }}</td>
                             <td>{{ etudiant.niveau }} {{ etudiant.classe|upper }}</td>
@@ -92,14 +90,13 @@
         <a href="#Up">Remonter en Haut</a>
     </div>
 
-    <!-- Modale pop-up cachée -->
+    <!-- ✅ Modale pop-up -->
     <div id="infoModal" class="modal">
         <div class="modal-content">
-            <p id="modalMessage" class="modal-text"><strong>Information élève :</strong></p>
-            <p id="modalClasse" class="modal-text"><strong>Classe :</strong></p>
-            <p id="modalSkill" class="modal-text"><strong>Compétence :</strong></p>
-            <p id="modalTheme" class="modal-text"><strong>Thème :</strong></p>
-            <p id="modalObjectif" class="modal-text"><strong>Objectif :</strong></p>
+            <p id="modalMessage" class="modal-text">Information élève</p>
+            <p class="modal-text" id="modalTheme"><strong>Thème :</strong> </p>
+            <p class="modal-text" id="modalObjectif"><strong>Objectif :</strong> </p>
+            <p class="modal-text" id="modalSkill"><strong>Compétence :</strong> </p>
             <a id="modifierBtn" href="#" class="modal-button" style="background-color: #2980b9; display: inline-block; margin-top: 10px;">Modifier</a>
             <button id="closeModal" class="modal-button">Fermer</button>
         </div>

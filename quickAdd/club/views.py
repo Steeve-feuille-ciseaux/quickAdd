@@ -24,6 +24,19 @@ def ajouter_etudiant(request):
         form = EtudiantForm()
     return render(request, 'club/ajouter_etudiant.html', {'form': form})
 
+def modifier_etudiant(request, etudiant_id):
+    etudiant = get_object_or_404(Etudiant, id=etudiant_id)
+
+    if request.method == 'POST':
+        form = EtudiantForm(request.POST, instance=etudiant)
+        if form.is_valid():
+            form.save()
+            return redirect('liste_etudiants')
+    else:
+        form = EtudiantForm(instance=etudiant)
+
+    return render(request, 'club/modifier_etudiant.html', {'form': form})
+
 def liste_etudiants(request):
     etudiants_qs = Etudiant.objects.all()
     total_inscrits = etudiants_qs.count()

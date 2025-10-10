@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <title>Modifier un étudiant</title>
+    <link rel="stylesheet" href="{% static 'css/ajouter.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Modifier les informations de l'élève</h1>
+        <form method="post">
+            {% csrf_token %}
+
+            <label for="{{ form.nom.id_for_label }}">Nom</label>
+            {{ form.nom }}
+
+            <label for="{{ form.prenom.id_for_label }}">Prénom</label>
+            {{ form.prenom }}
+
+            <!-- Ligne niveau + classe -->
+            <div class="flex-row">
+                <p class="label-like">Classe</p>
+                <div>
+                    {{ form.niveau }}
+                </div>
+                <div>
+                    {{ form.classe }}
+                </div>
+            </div>
+
+            <label for="{{ form.club.id_for_label }}">Club</label>
+            {{ form.club }}
+
+            <label for="{{ form.theme.id_for_label }}">Thème</label>
+            {{ form.theme }}
+
+            <!-- ✅ Nouveau champ : Objectif -->
+            <label for="{{ form.objectif.id_for_label }}">Objectif personnel</label>
+            {{ form.objectif }}
+
+            <!-- ✅ Nouveau champ : Compétence (skill) -->
+            <label for="{{ form.skill.id_for_label }}">Niveau de compétence</label>
+            {{ form.skill }}
+
+            <button type="submit">Enregistrer les modifications</button>
+        </form>
+
+        <a href="{% url 'liste_etudiants' %}">⬅ Revenir à la liste des inscrits</a>
+    </div>
+</body>
+</html>
