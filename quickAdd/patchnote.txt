@@ -20,10 +20,19 @@ v0.11.0 = Annulé une confirmation de présence lors de l'appel
 v0.11.1 = Polish accueil / liste des élèves
 v0.12.0 = tri de la liste
 v0.13.0 = pré-requis + readme
+v0.14.0 = Ajout objectif + Niveau dans model
+
+** Next step **
+ajouter -> Objectif des élèves
+Etapes d'apprentissage : Bien utiliser le claviers -> savoir naviguer sur le pc -> générer/creer une page html -> inclure le css -> expliquer Django
 
 ** comande récurrente **
 python -m venv env
-source env/bin/activate  # Sur Windows : env\Scripts\activate
+
+source env/bin/activate  # Sur Mac 
+env\Scripts\activate # Terminal cmd (Command Prompt)
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -> .\env\Scripts\Activate.ps1 # Terminal Powershell 
+
 python manage.py migrate
 python manage.py makemigrations
 python manage.py runserver
