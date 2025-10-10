@@ -23,6 +23,7 @@ v0.13.0 = pré-requis + readme
 v0.14.0 = Ajout objectif + Niveau dans model
 v0.14.1 = ajout infoEleve.js
 v0.14.2 = update infoEleve.css
+v0.15.0 = Pop-up skill + objectif dans html
 
 ** Next step **
 ajouter -> Objectif des élèves

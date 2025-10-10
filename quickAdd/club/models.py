@@ -17,24 +17,14 @@ class Etudiant(models.Model):
     theme = models.CharField(max_length=10, choices=THEME_CHOICES)
     club = models.CharField(max_length=10, choices=CLUB_CHOICES)
 
-    objectif = models.TextField(blank=True, null=True)  # ✅ Nouveau champ ajouté ici
+    objectif = models.TextField(blank=True, null=True)
 
     date_inscription = models.DateField(auto_now_add=True)
     date_presence = models.DateField(null=True, blank=True)
     cours_suivi = models.PositiveIntegerField(default=0)
 
+    NIVEAU_SKILL = [('1', 'Claviers'), ('2', 'Naviguation'), ('3', 'Lecture'), ('4', 'Programmation'), ('5', 'Création')]
+    skill = models.CharField(max_length=1, choices=NIVEAU_SKILL, null=True, blank=True) 
+
     def __str__(self):
         return f"{self.nom} {self.prenom} {self.niveau}{self.classe} - {self.club}"
-
-class Niveau(models.Model):
-    NIVEAU_CHOICES = [
-        ('1', 'Claviers'),
-        ('2', 'Naviguation'),
-        ('3', 'Lecture'),
-        ('4', 'Programmation'),
-        ('5', 'Création'),
-    ]
-    nom = models.CharField(max_length=1, choices=NIVEAU_CHOICES, unique=True)
-
-    def __str__(self):
-        return dict(self.NIVEAU_CHOICES).get(self.nom, self.nom)
