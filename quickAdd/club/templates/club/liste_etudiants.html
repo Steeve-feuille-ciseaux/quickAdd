@@ -12,25 +12,10 @@
         <h1>Club informatique</h1>
 
         <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;">
-            <a href="{% url 'ajouter_etudiant' %}"
-               style="padding: 8px 16px; font-size: 1rem; background: #27ae60; color: white; text-decoration: none; border-radius: 4px; font-weight: bold;">
-                Ajouter un élève
-            </a>
-
-            <a href="{% url 'appel' %}"
-               style="padding: 8px 16px; background: #f39c12; color: white; text-decoration: none; font-weight: bold; border-radius: 4px;">
-                Faire l'appel
-            </a>
-
-            <a onclick="window.print()"
-               style="padding: 8px 16px; font-size: 1rem; background: white; color: #2c3e50; border: 2px solid #2c3e50; border-radius: 4px; font-weight: bold; cursor: pointer; text-decoration: none;">
-                Imprimer la liste
-            </a>
-
-            <a href="{% url 'export_word' %}"
-               style="padding: 8px 16px; background: #2980b9; color: white; text-decoration: none; font-weight: bold; border-radius: 4px;">
-                Exporter en Word
-            </a>
+            <a href="{% url 'ajouter_etudiant' %}" class="btn green">Ajouter un élève</a>
+            <a href="{% url 'appel' %}" class="btn orange">Faire l'appel</a>
+            <a onclick="window.print()" class="btn outline">Imprimer la liste</a>
+            <a href="{% url 'export_word' %}" class="btn blue">Exporter en Word</a>
         </div>
 
         {% if etudiants %}
