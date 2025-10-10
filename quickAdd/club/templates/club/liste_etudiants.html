@@ -64,30 +64,30 @@
                         <th>Cours suivi</th>
                     </tr>
                 </thead>
-                    <tbody>
-                        {% for item in etudiants %}
-                            {% with etudiant=item.instance %}
-                            <tr>
-                                <td>{{ etudiant.prenom }}</td>
-                                <td>{{ etudiant.nom }}</td>
-                                <td>{{ etudiant.niveau }} {{ etudiant.classe|upper }}</td>
-                                <td>{{ etudiant.get_theme_display }}</td>
-                                <td>
-                                    {{ etudiant.date_inscription|date:"d/m/Y" }}
-                                    {{ item.delai }}
-                                </td>
-                                <td>
-                                    {% if etudiant.date_presence %}
-                                        {{ etudiant.date_presence|date:"d/m/Y" }}
-                                    {% else %}
-                                        -
-                                    {% endif %}
-                                </td>
-                                <td>{{ etudiant.cours_suivi }}</td>
-                            </tr>
-                            {% endwith %}
-                        {% endfor %}
-                    </tbody>
+                <tbody>
+                    {% for item in etudiants %}
+                        {% with etudiant=item.instance %}
+                        <tr class="clickable-row" style="cursor:pointer;" data-info="information spécial">
+                            <td>{{ etudiant.prenom }}</td>
+                            <td>{{ etudiant.nom }}</td>
+                            <td>{{ etudiant.niveau }} {{ etudiant.classe|upper }}</td>
+                            <td>{{ etudiant.get_theme_display }}</td>
+                            <td>
+                                {{ etudiant.date_inscription|date:"d/m/Y" }}
+                                {{ item.delai }}
+                            </td>
+                            <td>
+                                {% if etudiant.date_presence %}
+                                    {{ etudiant.date_presence|date:"d/m/Y" }}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
+                            <td>{{ etudiant.cours_suivi }}</td>
+                        </tr>
+                        {% endwith %}
+                    {% endfor %}
+                </tbody>
             </table>
         {% else %}
             <p>Aucun étudiant inscrit.</p>
@@ -95,6 +95,18 @@
 
         <a href="#Up">Remonter en Haut</a>
     </div>
+
+    <!-- Modale pop-up cachée -->
+    <div id="infoModal" style=" display:none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 1000;">
+        <div style="background: white; padding: 20px; border-radius: 8px; max-width: 300px; text-align: center; box-shadow: 0 0 10px rgba(0,0,0,0.3);">
+            <p id="modalMessage" style="font-weight: bold;">information spécial</p>
+            <button id="closeModal" style=" margin-top: 15px; padding: 8px 16px; background-color: #27ae60; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                Fermer
+            </button>
+        </div>
+    </div>
+
     <script src="{% static 'js/tri.js' %}" defer></script>
+    <script src="{% static 'js/infoEleve.js' %}" defer></script>
 </body>
 </html>

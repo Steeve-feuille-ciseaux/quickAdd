@@ -21,6 +21,7 @@ v0.11.1 = Polish accueil / liste des élèves
 v0.12.0 = tri de la liste
 v0.13.0 = pré-requis + readme
 v0.14.0 = Ajout objectif + Niveau dans model
+v0.14.1 = ajout infoeleve.js
 
 ** Next step **
 ajouter -> Objectif des élèves
