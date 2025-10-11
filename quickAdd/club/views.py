@@ -13,6 +13,7 @@ from docx.oxml import OxmlElement
 from docx.enum.text import WD_PARAGRAPH_ALIGNMENT
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.db.models import Q 
 
 def ajouter_etudiant(request):
     if request.method == 'POST':
@@ -38,33 +39,40 @@ def modifier_etudiant(request, etudiant_id):
     return render(request, 'club/modifier_etudiant.html', {'form': form})
 
 def liste_etudiants(request):
-    etudiants_qs = Etudiant.objects.all()
+    recherche = request.GET.get('recherche', '')
+
+    # Filtrer uniquement par nom et prénom
+    if recherche:
+        etudiants_qs = Etudiant.objects.filter(
+            Q(nom__icontains=recherche) | Q(prenom__icontains=recherche)
+        )
+    else:
+        etudiants_qs = Etudiant.objects.all()
+
     total_inscrits = etudiants_qs.count()
     niveaux = etudiants_qs.values_list('niveau', flat=True)
     compteur = Counter(niveaux)
 
-    # Garantir toutes les clés 6,5,4,3
     niveaux_fixes = ['6', '5', '4', '3']
     inscrits_par_niveau = {niveau: compteur.get(niveau, 0) for niveau in niveaux_fixes}
 
-    # ✅ Date d’ouverture des inscriptions
     date_ouverture = date(2025, 9, 25)
 
-    # ✅ Préparer liste enrichie avec délai
     etudiants = []
     for etudiant in etudiants_qs:
-        # Calcul du délai
         delta = (etudiant.date_inscription - date_ouverture).days
         etudiants.append({
             'instance': etudiant,
-            'delai': f"(J+{delta})" if delta >= 0 else f"(J-{abs(delta)})",  # Si inscrit avant ouverture
+            'delai': f"(J+{delta})" if delta >= 0 else f"(J-{abs(delta)})",
         })
 
     context = {
         'etudiants': etudiants,
         'total_inscrits': total_inscrits,
         'inscrits_par_niveau': inscrits_par_niveau,
+        'recherche': recherche,  # utile pour garder le champ rempli dans le template
     }
+
     return render(request, 'club/liste_etudiants.html', context)
 
 def appel(request):

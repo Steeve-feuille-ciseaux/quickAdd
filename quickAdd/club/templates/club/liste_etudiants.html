@@ -39,12 +39,22 @@
                 </tbody>
             </table>
 
+            <!-- Champ de recherche -->
+            <div class="search-container">
+                <form method="get" class="search-form">
+                    <div class="search-input-group">
+                        <input type="text" id="recherche" name="recherche" placeholder="Nom ou prénom" value="{{ recherche }}" class="search-input" />
+                        <button type="submit" class="btn blue">Rechercher</button>
+                    </div>
+                </form>
+            </div>
+
             <!-- Tableau détails étudiants -->
             <table>
                 <thead>
                     <tr>
-                        <th>Prénom</th>
                         <th>Nom</th>
+                        <th>Prénom</th>
                         <th>Classe</th>
                         <th>Thème</th>
                         <th>Date d'inscription</th>
@@ -62,8 +72,8 @@
                             data-objectif="{{ etudiant.objectif }}"
                             data-id="{{ etudiant.id }}"
                             style="cursor:pointer;">
-                            <td>{{ etudiant.prenom }}</td>
                             <td>{{ etudiant.nom }}</td>
+                            <td>{{ etudiant.prenom }}</td>
                             <td>{{ etudiant.niveau }} {{ etudiant.classe|upper }}</td>
                             <td>{{ etudiant.get_theme_display }}</td>
                             <td>
@@ -90,7 +100,7 @@
         <a href="#Up">Remonter en Haut</a>
     </div>
 
-    <!-- ✅ Modale pop-up -->
+    <!-- Modale pop-up -->
     <div id="infoModal" class="modal">
         <div class="modal-content">
             <p id="modalMessage" class="modal-text">Information élève</p>
