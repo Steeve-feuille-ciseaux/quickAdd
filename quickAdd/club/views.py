@@ -14,6 +14,7 @@ from docx.enum.text import WD_PARAGRAPH_ALIGNMENT
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q 
+from django.urls import reverse
 
 def ajouter_etudiant(request):
     if request.method == 'POST':
@@ -74,6 +75,15 @@ def liste_etudiants(request):
     }
 
     return render(request, 'club/liste_etudiants.html', context)
+
+def supprimer_etudiant(request, etudiant_id):
+    etudiant = get_object_or_404(Etudiant, id=etudiant_id)
+
+    if request.method == 'POST':
+        etudiant.delete()
+        return redirect('liste_etudiants')
+
+    return render(request, 'club/supprimer_etudiant.html', {'etudiant': etudiant})
 
 def appel(request):
     etudiants = Etudiant.objects.all().order_by('nom')

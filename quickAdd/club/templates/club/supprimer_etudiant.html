@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmer la suppression</title>
+    <link rel="stylesheet" href="{% static 'css/supprimer.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h2>Confirmer la suppression</h2>
+        <p>Es-tu sûr(e) de vouloir supprimer l’élève suivant ?</p>
+
+        <div style="margin: 20px 0; font-weight: bold;">
+            {{ etudiant.nom|upper }} {{ etudiant.prenom|capfirst }} — Classe {{ etudiant.niveau }}{{ etudiant.classe|upper }}
+        </div>
+
+        <form method="post" class="delete-form">
+            {% csrf_token %}
+            <button type="submit" class="btn red">Supprimer définitivement</button>
+            <a href="{% url 'liste_etudiants' %}" class="btn outline same-size">Annuler</a>
+        </form>
+    </div>
+</body>
+</html>

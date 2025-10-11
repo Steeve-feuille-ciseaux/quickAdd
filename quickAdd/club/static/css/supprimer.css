@@ -1,0 +1,70 @@
+/* 📄 supprimer.css */
+
+/* Conteneur principal */
+.container {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 30px 40px;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Titre de confirmation */
+h1 {
+    color: #c0392b;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+}
+
+/* Texte de confirmation */
+p {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+/* Formulaire de suppression */
+.delete-form {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Bouton rouge "Supprimer définitivement" */
+.btn.red {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    line-height: 1.2;
+}
+
+.btn.red:hover {
+    background: #c0392b;
+}
+
+/* Bouton "Annuler" */
+.btn.outline {
+    padding: 6px 14px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: 2px solid #2c3e50;
+    background-color: white;
+    color: #2c3e50;
+    border-radius: 4px;
+    text-decoration: none;
+    line-height: 1.2;
+}
+
+.btn.outline:hover {
+    background-color: #f2f2f2;
+}

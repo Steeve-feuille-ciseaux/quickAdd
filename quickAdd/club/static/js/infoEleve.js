@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalMessage = document.getElementById('modalMessage');
     const modifierBtn = document.getElementById('modifierBtn');
     const closeModalBtn = document.getElementById('closeModal');
+    const supprimerBtn = document.getElementById('supprimerBtn');
 
     // Quand on clique sur une ligne d'étudiant
     document.querySelectorAll('.clickable-row').forEach(row => {
@@ -19,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('skillText').textContent = skill;
 
             modifierBtn.href = `/modifier/${id}/`;
+            supprimerBtn.href = `/supprimer/${id}/`;
             modal.style.display = 'flex';
         });
     });

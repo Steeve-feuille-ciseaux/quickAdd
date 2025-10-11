@@ -67,3 +67,13 @@
 .modal-content {
     position: relative;
 }
+
+.btn.red {
+    background: #e74c3c;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}

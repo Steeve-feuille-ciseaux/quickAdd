@@ -10,4 +10,5 @@ urlpatterns = [
     path('export-word/', views.export_word, name='export_word'),
     path('appel/', views.appel, name='appel'),
     path('valider-presence/<int:etudiant_id>/', views.valider_presence, name='valider_presence'),
+    path('supprimer/<int:etudiant_id>/', views.supprimer_etudiant, name='supprimer_etudiant'),
 ]
