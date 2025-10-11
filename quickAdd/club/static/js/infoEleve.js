@@ -1,9 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('infoModal');
     const modalMessage = document.getElementById('modalMessage');
-    const modalTheme = document.getElementById('modalTheme');
-    const modalObjectif = document.getElementById('modalObjectif');
-    const modalSkill = document.getElementById('modalSkill');
     const modifierBtn = document.getElementById('modifierBtn');
     const closeModalBtn = document.getElementById('closeModal');
 
@@ -17,11 +14,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const id = row.getAttribute('data-id');
 
             modalMessage.textContent = info;
-            modalTheme.innerHTML = `<strong>Thème :</strong> ${theme}`;
-            modalObjectif.innerHTML = `<strong>Objectif :</strong> ${objectif}`;
-            modalSkill.innerHTML = `<strong>Compétence :</strong> ${skill}`;
-            modifierBtn.href = `/modifier/${id}/`;
+            document.getElementById('themeText').textContent = theme;
+            document.getElementById('objectifText').textContent = objectif;
+            document.getElementById('skillText').textContent = skill;
 
+            modifierBtn.href = `/modifier/${id}/`;
             modal.style.display = 'flex';
         });
     });

@@ -104,11 +104,16 @@
     <div id="infoModal" class="modal">
         <div class="modal-content">
             <span id="closeModal" class="close-button">&times;</span>
-            <p id="modalMessage" class="modal-text">Information élève</p>
-            <p class="modal-text" id="modalTheme"><strong>Thème :</strong> </p>
-            <p class="modal-text" id="modalObjectif"><strong>Objectif :</strong> </p>
-            <p class="modal-text" id="modalSkill"><strong>Compétence :</strong> </p>
-            <a id="modifierBtn" href="#" class="modal-button" style="background-color: #2980b9; display: inline-block; margin-top: 10px;">Modifier</a>
+
+            <h2 id="modalMessage" class="modal-title">Information élève</h2>
+
+            <div class="modal-info">
+                <p id="modalTheme"><strong>Thème :</strong> <span id="themeText"></span></p>
+                <p id="modalObjectif"><strong>Objectif :</strong> <span id="objectifText"></span></p>
+                <p id="modalSkill"><strong>Compétence :</strong> <span id="skillText"></span></p>
+            </div>
+
+            <a id="modifierBtn" href="#" class="modal-button btn blue">Modifier</a>
         </div>
     </div>
 

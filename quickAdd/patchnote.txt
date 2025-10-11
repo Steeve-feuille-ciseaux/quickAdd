@@ -28,6 +28,7 @@ v0.16.0 = Ajouter et modifier skill + objectif
 v1.00.0 = New Feature Rechercher
 v1.01.0 = Rectifier le format NOM Prénom
 v1.01.1 = Update UI pop-up fermeture bouton par une croix
+v1.01.2 = Update UI pop-up Contenu agréable a lire
 
 ** Next step **
 Info d'apprentissage : Bien utiliser le claviers -> savoir naviguer sur le pc -> générer/creer une page html -> inclure le css -> expliquer Django
