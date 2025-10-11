@@ -26,5 +26,13 @@ class Etudiant(models.Model):
     NIVEAU_SKILL = [('1', 'Claviers'), ('2', 'Naviguation'), ('3', 'Lecture'), ('4', 'Programmation'), ('5', 'Création')]
     skill = models.CharField(max_length=1, choices=NIVEAU_SKILL, null=True, blank=True) 
 
+    # Ajuste le format du NOM et Prenom 
+    def save(self, *args, **kwargs):
+        if self.nom:
+            self.nom = self.nom.upper()
+        if self.prenom:
+            self.prenom = self.prenom.capitalize()
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return f"{self.nom} {self.prenom} {self.niveau}{self.classe} - {self.club}"
