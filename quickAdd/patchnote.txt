@@ -25,9 +25,9 @@ v0.14.1 = ajout infoEleve.js
 v0.14.2 = update infoEleve.css
 v0.15.0 = Pop-up skill + objectif dans html
 v0.16.0 = Ajouter et modifier skill + objectif
-v0.16.0 = Ajouter et modifier skill + objectif
 v1.00.0 = New Feature Rechercher
 v1.01.0 = Rectifier le format NOM Prénom
+v1.01.1 = Update UI pop-up fermeture bouton par une croix
 
 ** Next step **
 Info d'apprentissage : Bien utiliser le claviers -> savoir naviguer sur le pc -> générer/creer une page html -> inclure le css -> expliquer Django

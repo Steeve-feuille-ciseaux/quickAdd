@@ -35,3 +35,23 @@
     border-radius: 4px;
     cursor: pointer;
 }
+
+/* ❌ Croix de fermeture dans le pop-up */
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.close-button:hover {
+    color: #000;
+}
+
+.modal-content {
+    position: relative;
+}
