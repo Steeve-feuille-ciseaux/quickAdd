@@ -18,8 +18,8 @@
             <a href="{% url 'export_word' %}" class="btn blue">Exporter en Word</a>
         </div>
 
-        {% if etudiants %}
-            <!-- Tableau résumé -->
+        <!-- Toujours afficher le tableau résumé, même si etudiants est vide -->
+        {% if total_inscrits and inscrits_par_niveau %}
             <table>
                 <thead>
                     <tr>
@@ -38,17 +38,19 @@
                     </tr>
                 </tbody>
             </table>
+        {% endif %}
 
-            <!-- Champ de recherche -->
-            <div class="search-container">
-                <form method="get" class="search-form">
-                    <div class="search-input-group">
-                        <input type="text" id="recherche" name="recherche" placeholder="Nom ou prénom" value="{{ recherche }}" class="search-input" />
-                        <button type="submit" class="btn blue">Rechercher</button>
-                    </div>
-                </form>
-            </div>
+        <!-- Toujours afficher le champ de recherche -->
+        <div class="search-container">
+            <form method="get" class="search-form">
+                <div class="search-input-group">
+                    <input type="text" id="recherche" name="recherche" placeholder="Nom ou prénom" value="{{ recherche }}" class="search-input" />
+                    <button type="submit" class="btn blue">Rechercher</button>
+                </div>
+            </form>
+        </div>
 
+        {% if etudiants %}
             <!-- Tableau détails étudiants -->
             <table>
                 <thead>
@@ -94,10 +96,13 @@
                 </tbody>
             </table>
         {% else %}
-            <p>Aucun étudiant inscrit.</p>
+            <p>Aucun étudiant trouvé pour cette recherche.</p>
+            <a href="{% url 'liste_etudiants' %}">&larr; Revenir en arrière</a>
         {% endif %}
 
-        <a href="#Up">Remonter en Haut</a>
+        {% if etudiants %}
+            <a href="#Up">Remonter en Haut</a>
+        {% endif %}
     </div>
 
     <!-- Modale pop-up -->
